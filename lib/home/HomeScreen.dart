@@ -19,7 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset('assets/images/main_background.png'),
+        Image.asset(
+          'assets/images/main_background.png',
+          fit: BoxFit.fill,
+          width: double.infinity,
+        ),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(

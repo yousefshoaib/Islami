@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami/home/HomeScreen.dart';
+import 'package:islami/quran/suradetails.dart';
 
 void main() {
   runApp(YousefApp());
@@ -15,17 +16,21 @@ class YousefApp extends StatelessWidget {
     return MaterialApp(
       title: 'Islami',
       theme: ThemeData(
-          primaryColor: MyThemeData.primaryColor,
-          appBarTheme: AppBarTheme(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              titleTextStyle: TextStyle(color: Colors.black, fontSize: 30)),
-          bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.white,
-          )),
+        primaryColor: MyThemeData.primaryColor,
+        appBarTheme: AppBarTheme(
+            backgroundColor: Colors.transparent,
+            centerTitle: true,
+            elevation: 0,
+            titleTextStyle: TextStyle(color: Colors.black, fontSize: 30),
+            iconTheme: IconThemeData(color: Colors.black)),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: Colors.black,
+          unselectedItemColor: Colors.white,
+        ),
+      ),
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
+        SuraDetails.routeName: (context) => SuraDetails(),
       },
       initialRoute: HomeScreen.routeName,
     );
