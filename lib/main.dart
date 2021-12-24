@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:islami/home/HomeScreen.dart';
 import 'package:islami/quran/suradetails.dart';
 
+import 'hades/hadesdetails.dart';
+
 void main() {
   runApp(YousefApp());
 }
@@ -31,6 +33,7 @@ class YousefApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
         SuraDetails.routeName: (context) => SuraDetails(),
+        HadesDetails.routeName: (context) => HadesDetails(),
       },
       initialRoute: HomeScreen.routeName,
     );
