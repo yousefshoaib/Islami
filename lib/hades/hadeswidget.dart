@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islami/hades/hades.dart';
 import 'package:islami/hades/hadesdetails.dart';
+import 'package:islami/main.dart';
+import 'package:islami/providers/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class HadesWidget extends StatelessWidget {
   HadesItem item;
@@ -9,6 +12,7 @@ class HadesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return InkWell(
       onTap: () {
         Navigator.pushNamed(
@@ -23,7 +27,11 @@ class HadesWidget extends StatelessWidget {
           child: Text(
             item.title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 25),
+            style: TextStyle(
+                color: provider.appThem == ThemeMode.light
+                    ? Colors.black
+                    : MyThemeData.colorDark,
+                fontSize: 25),
           ),
         ),
       ),

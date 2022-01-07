@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:islami/providers/app_config_provider.dart';
 import 'package:islami/quran/surawidget.dart';
+import 'package:provider/provider.dart';
+
+import '../main.dart';
 
 class QuranTap extends StatelessWidget {
   List<String> name = [
@@ -121,6 +125,7 @@ class QuranTap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Column(
       children: [
         Expanded(
@@ -141,7 +146,9 @@ class QuranTap extends StatelessWidget {
             separatorBuilder: (buildcontext, index) {
               return Container(
                 height: 2,
-                color: Theme.of(context).primaryColor,
+                color: provider.appThem == ThemeMode.light
+                    ? Theme.of(context).primaryColor
+                    : MyThemeData.colorDark,
                 margin: EdgeInsets.symmetric(horizontal: 24),
               );
             },

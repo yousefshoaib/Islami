@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islami/hades/hades.dart';
+import 'package:islami/providers/app_config_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../main.dart';
 
 class HadesDetails extends StatelessWidget {
   static const String routeName = 'hades_details';
@@ -7,9 +11,12 @@ class HadesDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var args = ModalRoute.of(context)!.settings.arguments as HadesItem;
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(children: [
       Image.asset(
-        'assets/images/main_background.png',
+        provider.appThem == ThemeMode.light
+            ? 'assets/images/main_background.png'
+            : 'assets/images/main_background_dark.png',
         fit: BoxFit.fill,
         width: double.infinity,
       ),
@@ -23,11 +30,16 @@ class HadesDetails extends StatelessWidget {
               child: Text(args.content,
                   textAlign: TextAlign.center,
                   style: TextStyle(
+                    color: provider.appThem == ThemeMode.light
+                        ? Colors.black
+                        : MyThemeData.colorDark,
                     fontSize: 20,
                   )),
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: provider.appThem == ThemeMode.light
+                  ? Colors.white
+                  : MyThemeData.primaryColorDark,
               borderRadius: BorderRadius.circular(24),
             ),
             margin: EdgeInsets.symmetric(horizontal: 24, vertical: 46),
