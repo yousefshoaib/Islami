@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami/providers/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 import 'hadeswidget.dart';
@@ -14,6 +16,7 @@ class _HadesTapState extends State<HadesTap> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     if (allHadesItem.isEmpty) readHadesfile();
     return Column(children: [
       Expanded(
@@ -28,21 +31,23 @@ class _HadesTapState extends State<HadesTap> {
           flex: 3,
           child: allHadesItem.isEmpty
               ? Center(
-                  child: CircularProgressIndicator(
-                  color: MyThemeData.primaryColor,
-                ))
+              child: CircularProgressIndicator(
+                color: MyThemeData.primaryColor,
+              ))
               : ListView.separated(
-                  itemBuilder: (context, index) {
-                    return HadesWidget(allHadesItem[index]);
-                  },
-                  itemCount: allHadesItem.length,
-                  separatorBuilder: (buildcontext, index) {
-                    return Container(
-                      height: 2,
-                      color: Theme.of(context).primaryColor,
+              itemBuilder: (context, index) {
+                return HadesWidget(allHadesItem[index]);
+              },
+              itemCount: allHadesItem.length,
+              separatorBuilder: (buildcontext, index) {
+                return Container(
+                  height: 2,
+                      color: provider.appThem == ThemeMode.light
+                          ? Theme.of(context).primaryColor
+                          : MyThemeData.colorDark,
                       margin: EdgeInsets.symmetric(horizontal: 24),
                     );
-                  }))
+              }))
     ]);
   }
 
